@@ -11,15 +11,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 public class FXMLController implements Initializable {
     
     @FXML
-    private Label lblOut;
-    
-    @FXML
-    private void btnClickAction(ActionEvent event) {
-        lblOut.setText("Hello World!");
+    void imgClick(MouseEvent event) {
+
+    }
+
     }
     
     @Override
