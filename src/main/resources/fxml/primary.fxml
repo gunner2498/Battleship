@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -170,6 +171,7 @@
       <TextField layoutX="323.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        3" />
       <TextField layoutX="392.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        4" />
       <TextField layoutX="464.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        5" />
+      <Button fx:id="BTN_START" layoutX="63.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#btnStart" text="Start" />
     </children>
    <opaqueInsets>
       <Insets />
