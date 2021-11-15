@@ -1,11 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="gunn.battleship.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="696.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gunn.battleship.FXMLController">
     <children>
-        <Button layoutX="128.0" layoutY="107.0" onAction="#btnClickAction" text="Click Me!" />
-        <Label fx:id="lblOut" layoutX="53.0" layoutY="30.0" minHeight="16" minWidth="69" prefHeight="52.0" prefWidth="215.0" />
+      <GridPane layoutX="183.0" layoutY="151.0" prefHeight="350.0" prefWidth="350.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="73.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="124.0" minHeight="5.0" prefHeight="67.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="100.0" minHeight="59.0" prefHeight="69.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fx:id="JFX_IMG_01" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_02" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_03" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_04" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_05" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_06" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_07" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_08" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_09" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_10" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_11" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_12" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_13" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_14" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_15" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_16" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_17" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_18" fitHeight="68.0" fitWidth="69.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_19" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_20" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_21" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_22" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_23" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_24" fitHeight="69.0" fitWidth="69.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JFX_IMG_25" fitHeight="68.0" fitWidth="71.0" onMouseClicked="#imgClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@../Clouds.jpeg" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <ImageView fitHeight="100.0" fitWidth="279.0" layoutX="230.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Logo.jpg" />
+         </image>
+      </ImageView>
+      <TextField layoutX="153.0" layoutY="151.0" prefHeight="68.0" prefWidth="30.0" text="A" />
+      <TextField layoutX="153.0" layoutY="219.0" prefHeight="68.0" prefWidth="30.0" text="B" />
+      <TextField layoutX="153.0" layoutY="292.0" prefHeight="68.0" prefWidth="30.0" text="C" />
+      <TextField layoutX="153.0" layoutY="360.0" prefHeight="68.0" prefWidth="30.0" text="D" />
+      <TextField layoutX="153.0" layoutY="433.0" prefHeight="68.0" prefWidth="30.0" text="E" />
+      <TextField layoutX="183.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        1" />
+      <TextField layoutX="252.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        2" />
+      <TextField layoutX="323.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        3" />
+      <TextField layoutX="392.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        4" />
+      <TextField layoutX="464.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        5" />
     </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <effect>
+      <ColorAdjust brightness="0.02" contrast="0.26" />
+   </effect>
 </AnchorPane>
