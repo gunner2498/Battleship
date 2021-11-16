@@ -172,6 +172,7 @@
       <TextField layoutX="392.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        4" />
       <TextField layoutX="464.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        5" />
       <Button fx:id="BTN_START" layoutX="63.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#btnStart" text="Start" />
+      <Button fx:id="BTN_EXIT" layoutX="92.0" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#exitclick" text="Exit" />
     </children>
    <opaqueInsets>
       <Insets />

@@ -17,15 +17,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 public class FXMLController implements Initializable {
+  
+    //imports
     
-/*@FXML
-private ImageView Explosion;
-@FXML      //new stuff for the pictures
-private ImageView Water:
-*/
-        
-@FXML
+    @FXML
     private Button BTN_START;
+
+    @FXML
+    private Button BTN_EXIT;
 
     @FXML
     private ImageView JFX_IMG_01;
@@ -105,8 +104,16 @@ private ImageView Water:
 int spot1;
 int spot2;
 int spot3;
+
     @FXML
-    void imgClick(MouseEvent event) 
+    void exitclick(MouseEvent event) //exit button
+    {
+     System.exit(0);
+    }
+
+
+    @FXML
+    void imgClick(MouseEvent event) //variables for images
     {
      ImageView img = (ImageView) event.getSource();
     
@@ -123,9 +130,9 @@ int spot3;
      }
     }
 
-    void spotPick(){
-           //1= 1,2 
-        spot1  = ThreadLocalRandom.current().nextInt(1,11+1);
+    void spotPick(){   //code for randomizers and conditions for no overlap
+            
+        spot1 = ThreadLocalRandom.current().nextInt(1,11+1);
         spot2 = ThreadLocalRandom.current().nextInt(1,11+1);
         spot3 = ThreadLocalRandom.current().nextInt(1,11+1);
         while (spot1 == spot2) {
@@ -137,68 +144,71 @@ int spot3;
     }
     
     @FXML
-    void btnStart(MouseEvent event) 
+    void btnStart(MouseEvent event) //Code for setting images to a hit in game and for setting button invisible
     {
         spotPick();
-        //1 = 
+        
         if (spot1 == 1 || spot2 == 1 || spot3 == 1)
         {
          JFX_IMG_01.setAccessibleText("2L");
          JFX_IMG_02.setAccessibleText("2L");
         }
-        else if (spot1 == 2 || spot2 == 2 || spot3 == 2)
+        if (spot1 == 2 || spot2 == 2 || spot3 == 2)
         {
          JFX_IMG_07.setAccessibleText("2L");
          JFX_IMG_08.setAccessibleText("2L");   
         }
-        else if (spot1 == 3 || spot2 == 3 || spot3 == 3)
+        if (spot1 == 3 || spot2 == 3 || spot3 == 3)
         {
          JFX_IMG_21.setAccessibleText("2L");
          JFX_IMG_22.setAccessibleText("2L");   
         }
-        else if (spot1 == 4 || spot2 == 4 || spot3 == 4)
+        if (spot1 == 4 || spot2 == 4 || spot3 == 4)
         {
          JFX_IMG_12.setAccessibleText("2L");
          JFX_IMG_17.setAccessibleText("2L");   
         }
-        else if (spot1 == 5 || spot2 == 5 || spot3 == 5)
+        if (spot1 == 5 || spot2 == 5 || spot3 == 5)
         {
          JFX_IMG_09.setAccessibleText("2L");
          JFX_IMG_14.setAccessibleText("2L");   
         }
-        else if (spot1 == 6 || spot2 == 6 || spot3 == 6)
+        if (spot1 == 6 || spot2 == 6 || spot3 == 6)
         {
          JFX_IMG_10.setAccessibleText("2L");
          JFX_IMG_15.setAccessibleText("2L");   
         }
-        else if (spot1 == 7 || spot2 == 7 || spot3 == 7)
+        if (spot1 == 7 || spot2 == 7 || spot3 == 7)
         {
          JFX_IMG_19.setAccessibleText("2L");
          JFX_IMG_20.setAccessibleText("2L");   
         }
-        else if (spot1 == 8 || spot2 == 8 || spot3 == 8)
+        if (spot1 == 8 || spot2 == 8 || spot3 == 8)
         {
          JFX_IMG_24.setAccessibleText("2L");
          JFX_IMG_25.setAccessibleText("2L");   
         }
-        else if (spot1 == 9 || spot2 == 9 || spot3 == 9)
+        if (spot1 == 9 || spot2 == 9 || spot3 == 9)
         {
          JFX_IMG_13.setAccessibleText("2L");
          JFX_IMG_18.setAccessibleText("2L");
          JFX_IMG_23.setAccessibleText("2L");
         }
-        else if (spot1 == 10 || spot2 == 10 || spot3 == 10)
+        if (spot1 == 10 || spot2 == 10 || spot3 == 10)
         {
          JFX_IMG_03.setAccessibleText("2L");
          JFX_IMG_04.setAccessibleText("2L");
          JFX_IMG_05.setAccessibleText("2L");   
-        }
-        else if (spot1 == 11 || spot2 == 11 || spot3 == 11)
+        }                                                    
+        if (spot1 == 11 || spot2 == 11 || spot3 == 11)  
         {
          JFX_IMG_06.setAccessibleText("2L");
          JFX_IMG_11.setAccessibleText("2L");
          JFX_IMG_16.setAccessibleText("2L");    
         }
+        
+        BTN_START.setVisible(false);
+        
     }
     
     
