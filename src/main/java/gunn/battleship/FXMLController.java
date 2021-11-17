@@ -128,6 +128,8 @@ int total=0;
 int hitTotal=0;
 int missTotal=0;
 
+ImageView Store[];
+
 
     
 
@@ -137,6 +139,8 @@ int missTotal=0;
         timer++;
           LBL_TIMER.setText("" + timer);
     }
+    
+    
     
     
 
@@ -175,7 +179,15 @@ int missTotal=0;
     @FXML
     void resetClick(MouseEvent event) //Reset button
     {
-     picR img.setImage(clouds) //
+     for (ImageView name : Store) {
+      name.setAccessibleText("");
+      name.setImage (new Image(getClass().getResource("/Clouds.jpeg").toString())); //work in progress to revert photos to cloud
+          
+   }   
+        
+        
+       
+              
     }
     
     
@@ -280,12 +292,26 @@ int missTotal=0;
         
         
     }
+    /*
+    if (total == hitTotal)
+    {
+     execService.shutdown();//stop timer code
     
+    }
+    
+    if (missTotal == 10)
+    {
+     execService.shutdown();//stop timer code
+    
+    }
+    */
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     ImageView picR[] = {JFX_IMG_01, JFX_IMG_02, JFX_IMG_03, JFX_IMG_04, JFX_IMG_05,JFX_IMG_06,JFX_IMG_07,JFX_IMG_08,JFX_IMG_09,JFX_IMG_10,JFX_IMG_11,JFX_IMG_12,JFX_IMG_13,JFX_IMG_14,JFX_IMG_15,JFX_IMG_16,JFX_IMG_17,JFX_IMG_18,JFX_IMG_19,JFX_IMG_20,JFX_IMG_21,JFX_IMG_22,JFX_IMG_23,JFX_IMG_24,JFX_IMG_25,};
-        // TODO
+       picR = Store;
+    
+      // TODO
     }//
     
 }
