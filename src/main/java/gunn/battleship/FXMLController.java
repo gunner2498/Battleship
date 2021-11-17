@@ -1,9 +1,11 @@
 package gunn.battleship;
 /*
-Put header here
-
-
- */
+Name; Gavin Gunn
+Class; Grade 12 Com Studies
+Date; 22/11/21
+Assignment#; 1
+Description; Creating a functioning single player game of battleship
+*/
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,9 +18,25 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+
 public class FXMLController implements Initializable {
   
     //imports
+    
+    @FXML
+    private Button BTN_RESET;
+    
+     @FXML
+    private Label LBL_HIT;
+    
+    @FXML
+    private Label LBL_MISS;
+    
+    @FXML
+    private Label LBL_TIMER;
     
     @FXML
     private Button BTN_START;
@@ -101,17 +119,35 @@ public class FXMLController implements Initializable {
     @FXML
     private ImageView JFX_IMG_25;
 
+    //Globals
 int spot1;
 int spot2;
 int spot3;
+int timer=0;
+int total=0;
+int hitTotal=0;
+int missTotal=0;
 
+
+    
+
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ae -> counter())); //timers brain
+
+    void counter(){           //timer label counter
+        timer++;
+          LBL_TIMER.setText("" + timer);
+    }
+    
+    
+
+    
     @FXML
-    void exitclick(MouseEvent event) //exit button
+    void exitClick(MouseEvent event) //exit button
     {
      System.exit(0);
     }
-
-
+    
+    
     @FXML
     void imgClick(MouseEvent event) //variables for images
     {
@@ -122,13 +158,27 @@ int spot3;
      Image water = new Image(getClass().getResource("/Water.jpeg").toString());
      if (img.getAccessibleText().equals("2L"))
      {
-      img.setImage(explosion);   //Work in progress image changing code
+      img.setImage(explosion);   // image changing code
+      System.out.println(hitTotal);
+      hitTotal=hitTotal+1;
+      LBL_HIT.setText("" + hitTotal);
      }
      else
      {
-      img.setImage(water);   
+      img.setImage(water);
+      missTotal =+ 1;
+      LBL_MISS.setText("" +missTotal);
+      
      }
     }
+    
+    @FXML
+    void resetClick(MouseEvent event) //Reset button
+    {
+     picR img.setImage(clouds) //
+    }
+    
+    
 
     void spotPick(){   //code for randomizers and conditions for no overlap
             
@@ -144,7 +194,7 @@ int spot3;
     }
     
     @FXML
-    void btnStart(MouseEvent event) //Code for setting images to a hit in game and for setting button invisible
+    void btnStart(MouseEvent event) //Code for setting images to a hit in game, setting button invisible, Timer initiation and updating total +spots
     {
         spotPick();
         
@@ -152,73 +202,90 @@ int spot3;
         {
          JFX_IMG_01.setAccessibleText("2L");
          JFX_IMG_02.setAccessibleText("2L");
+         total =total+ 2;
         }
         if (spot1 == 2 || spot2 == 2 || spot3 == 2)
         {
          JFX_IMG_07.setAccessibleText("2L");
-         JFX_IMG_08.setAccessibleText("2L");   
+         JFX_IMG_08.setAccessibleText("2L");
+         total =total+ 2;
         }
         if (spot1 == 3 || spot2 == 3 || spot3 == 3)
         {
          JFX_IMG_21.setAccessibleText("2L");
-         JFX_IMG_22.setAccessibleText("2L");   
+         JFX_IMG_22.setAccessibleText("2L");
+         total =total+ 2;
         }
         if (spot1 == 4 || spot2 == 4 || spot3 == 4)
         {
          JFX_IMG_12.setAccessibleText("2L");
-         JFX_IMG_17.setAccessibleText("2L");   
+         JFX_IMG_17.setAccessibleText("2L");
+         total =total+ 2;
         }
         if (spot1 == 5 || spot2 == 5 || spot3 == 5)
         {
          JFX_IMG_09.setAccessibleText("2L");
-         JFX_IMG_14.setAccessibleText("2L");   
+         JFX_IMG_14.setAccessibleText("2L"); 
+         total =total+ 2;
         }
         if (spot1 == 6 || spot2 == 6 || spot3 == 6)
         {
          JFX_IMG_10.setAccessibleText("2L");
-         JFX_IMG_15.setAccessibleText("2L");   
+         JFX_IMG_15.setAccessibleText("2L"); 
+         total =total+ 2;
         }
         if (spot1 == 7 || spot2 == 7 || spot3 == 7)
         {
          JFX_IMG_19.setAccessibleText("2L");
-         JFX_IMG_20.setAccessibleText("2L");   
+         JFX_IMG_20.setAccessibleText("2L");
+         total =total+ 2;
         }
         if (spot1 == 8 || spot2 == 8 || spot3 == 8)
         {
          JFX_IMG_24.setAccessibleText("2L");
-         JFX_IMG_25.setAccessibleText("2L");   
+         JFX_IMG_25.setAccessibleText("2L");
+         total =total+ 2;
         }
         if (spot1 == 9 || spot2 == 9 || spot3 == 9)
         {
          JFX_IMG_13.setAccessibleText("2L");
          JFX_IMG_18.setAccessibleText("2L");
          JFX_IMG_23.setAccessibleText("2L");
+         total =total+ 3;
         }
         if (spot1 == 10 || spot2 == 10 || spot3 == 10)
         {
          JFX_IMG_03.setAccessibleText("2L");
          JFX_IMG_04.setAccessibleText("2L");
-         JFX_IMG_05.setAccessibleText("2L");   
+         JFX_IMG_05.setAccessibleText("2L"); 
+         total =total+ 3;
         }                                                    
         if (spot1 == 11 || spot2 == 11 || spot3 == 11)  
         {
          JFX_IMG_06.setAccessibleText("2L");
          JFX_IMG_11.setAccessibleText("2L");
-         JFX_IMG_16.setAccessibleText("2L");    
+         JFX_IMG_16.setAccessibleText("2L");
+         total =total+ 3;
         }
         
+       // if (total == ) //work in progress
+            
+        
+        
         BTN_START.setVisible(false);
+       
+        
+        timeline.setCycleCount(Timeline.INDEFINITE);//starts timer
+        timeline.play();
+        
         
     }
-    
-    
-
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+    ImageView picR[] = {JFX_IMG_01, JFX_IMG_02, JFX_IMG_03, JFX_IMG_04, JFX_IMG_05,JFX_IMG_06,JFX_IMG_07,JFX_IMG_08,JFX_IMG_09,JFX_IMG_10,JFX_IMG_11,JFX_IMG_12,JFX_IMG_13,JFX_IMG_14,JFX_IMG_15,JFX_IMG_16,JFX_IMG_17,JFX_IMG_18,JFX_IMG_19,JFX_IMG_20,JFX_IMG_21,JFX_IMG_22,JFX_IMG_23,JFX_IMG_24,JFX_IMG_25,};
         // TODO
-    }
+    }//
     
 }

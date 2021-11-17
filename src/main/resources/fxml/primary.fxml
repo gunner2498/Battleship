@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="696.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gunn.battleship.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="696.0" prefWidth="715.0" style="-fx-background-color: SLATEGREY;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gunn.battleship.FXMLController">
     <children>
       <GridPane layoutX="183.0" layoutY="151.0" prefHeight="350.0" prefWidth="350.0">
          <columnConstraints>
@@ -156,7 +157,7 @@
             </ImageView>
          </children>
       </GridPane>
-      <ImageView fitHeight="100.0" fitWidth="279.0" layoutX="230.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Logo" fitHeight="100.0" fitWidth="279.0" layoutX="230.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Logo.jpg" />
          </image>
@@ -172,12 +173,19 @@
       <TextField layoutX="392.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        4" />
       <TextField layoutX="464.0" layoutY="126.0" prefHeight="26.0" prefWidth="69.0" text="        5" />
       <Button fx:id="BTN_START" layoutX="63.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#btnStart" text="Start" />
-      <Button fx:id="BTN_EXIT" layoutX="92.0" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#exitclick" text="Exit" />
+      <Button fx:id="BTN_EXIT" layoutX="92.0" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#exitClick" text="Exit" />
+      <Label fx:id="LBL_TIMER" alignment="CENTER" layoutX="555.0" layoutY="55.0" prefHeight="38.0" prefWidth="69.0" style="-fx-background-color: black;" text="0000" textFill="WHITE" />
+      <Label fx:id="LBL_MISS_TITLE" alignment="CENTER" layoutX="555.0" layoutY="42.0" prefHeight="17.0" prefWidth="69.0" style="-fx-background-color: white;" text="Time:" />
+      <Label fx:id="LBL_MISS" layoutX="581.0" layoutY="227.0" text="0" />
+      <Label fx:id="LBL_HIT" alignment="CENTER" layoutX="648.0" layoutY="227.0" text="0" />
+      <Label fx:id="LBL_MISS_TITLE" layoutX="570.0" layoutY="202.0" text="Missed:" />
+      <Label fx:id="LBL_HIT_TITLE" layoutX="644.0" layoutY="202.0" text="Hit:" />
+      <Button fx:id="BTN_RESET" layoutX="486.0" layoutY="576.0" mnemonicParsing="false" onMouseClicked="#resetClick" text="Reset" />
     </children>
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
    <effect>
-      <ColorAdjust brightness="0.02" contrast="0.26" />
+      <ColorAdjust brightness="-0.1" contrast="0.21" hue="-0.02" />
    </effect>
 </AnchorPane>
