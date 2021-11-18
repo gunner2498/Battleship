@@ -21,10 +21,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.TextField;
 
 public class FXMLController implements Initializable {
   
     //imports
+    
+    @FXML
+    private Label LBL_GAMEBRAIN;
+    
+    @FXML
+    private TextField TXT_NAME;
     
     @FXML
     private Button BTN_RESET;
@@ -127,16 +134,17 @@ int timer=0;
 int total=0;
 int hitTotal=0;
 int missTotal=0;
+public static String Name;
+int score =0;
+int endTime=0;
 
-ImageView Store[];
+    ImageView Store[];
 
-
-    
 
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ae -> counter())); //timers brain
 
     void counter(){           //timer label counter
-        timer++;
+          timer++;
           LBL_TIMER.setText("" + timer);
     }
     
@@ -166,31 +174,71 @@ ImageView Store[];
       System.out.println(hitTotal);
       hitTotal=hitTotal+1;
       LBL_HIT.setText("" + hitTotal);
+      img.setAccessibleText("Neg");
      }
-     else
+     if(img.getAccessibleText().equals(""))
      {
       img.setImage(water);
-      missTotal =+ 1;
+      missTotal =missTotal+1;
       LBL_MISS.setText("" +missTotal);
+      img.setAccessibleText("Neg");
+      
+       if (total == hitTotal)
+    {
+     timer = endTime;
+     timeline.stop(); //stop timer code
+     for (ImageView name : Store) 
+     {
+      name.setAccessibleText("Neg");
+     }
+     score = ((hitTotal/missTotal)*1000)- (endTime*5);
+     LBL_GAMEBRAIN.setText("User " + Name + ", Final score: " + score );//not working  outputting 0
+    
+    }
+    
+    if (missTotal == 10)
+    {
+     timer = endTime;   
+     timeline.stop(); //stop timer code
+     for (ImageView name : Store) 
+     {
+      name.setAccessibleText("Neg");
+     }
+     score = ((hitTotal/missTotal)*1000)- (endTime*5);
+     LBL_GAMEBRAIN.setText("User " + Name + ", Final score: " + score ); //not working  outputting 0
+    } 
       
      }
     }
     
+    
     @FXML
-    void resetClick(MouseEvent event) //Reset button
-    {
-     for (ImageView name : Store) {
+    void resetClick(ActionEvent event) {
+    BTN_START.setVisible(true);
+    TXT_NAME.setVisible(true);
+    LBL_GAMEBRAIN.setText("");
+    LBL_TIMER.setText("0000");
+    LBL_GAMEBRAIN.setText("");
+    TXT_NAME.setText("");
+    LBL_MISS.setText("");
+    LBL_HIT.setText("");
+    hitTotal=0;
+    missTotal=0;
+    score =0;
+    endTime=0;
+    timer=0;
+    total=0;
+    
+    
+     for (ImageView name : Store) 
+     {
       name.setAccessibleText("");
-      name.setImage (new Image(getClass().getResource("/Clouds.jpeg").toString())); //work in progress to revert photos to cloud
+      name.setImage(new Image(getClass().getResource("/Clouds.jpeg").toString()));
+     } //work in progress to revert photos to cloud
           
    }   
         
-        
-       
-              
-    }
-    
-    
+
 
     void spotPick(){   //code for randomizers and conditions for no overlap
             
@@ -208,6 +256,14 @@ ImageView Store[];
     @FXML
     void btnStart(MouseEvent event) //Code for setting images to a hit in game, setting button invisible, Timer initiation and updating total +spots
     {
+        for (ImageView name : Store) 
+     {
+      name.setAccessibleText("");
+      name.setImage(new Image(getClass().getResource("/Clouds.jpeg").toString()));
+     } //work in progress to revert photos to cloud
+        
+        Name = TXT_NAME.getText();
+  
         spotPick();
         
         if (spot1 == 1 || spot2 == 1 || spot3 == 1)
@@ -280,10 +336,10 @@ ImageView Store[];
          total =total+ 3;
         }
         
-       // if (total == ) //work in progress
+      
             
         
-        
+        TXT_NAME.setVisible(false);
         BTN_START.setVisible(false);
        
         
@@ -292,24 +348,14 @@ ImageView Store[];
         
         
     }
-    /*
-    if (total == hitTotal)
-    {
-     execService.shutdown();//stop timer code
     
-    }
+   
     
-    if (missTotal == 10)
-    {
-     execService.shutdown();//stop timer code
-    
-    }
-    */
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    ImageView picR[] = {JFX_IMG_01, JFX_IMG_02, JFX_IMG_03, JFX_IMG_04, JFX_IMG_05,JFX_IMG_06,JFX_IMG_07,JFX_IMG_08,JFX_IMG_09,JFX_IMG_10,JFX_IMG_11,JFX_IMG_12,JFX_IMG_13,JFX_IMG_14,JFX_IMG_15,JFX_IMG_16,JFX_IMG_17,JFX_IMG_18,JFX_IMG_19,JFX_IMG_20,JFX_IMG_21,JFX_IMG_22,JFX_IMG_23,JFX_IMG_24,JFX_IMG_25,};
-       picR = Store;
+    ImageView picR[] = {JFX_IMG_01, JFX_IMG_02, JFX_IMG_03, JFX_IMG_04, JFX_IMG_05, JFX_IMG_06, JFX_IMG_07,JFX_IMG_08,JFX_IMG_09,JFX_IMG_10,JFX_IMG_11,JFX_IMG_12,JFX_IMG_13,JFX_IMG_14,JFX_IMG_15,JFX_IMG_16,JFX_IMG_17,JFX_IMG_18,JFX_IMG_19,JFX_IMG_20,JFX_IMG_21,JFX_IMG_22,JFX_IMG_23,JFX_IMG_24,JFX_IMG_25};
+       Store=picR;
     
       // TODO
     }//
