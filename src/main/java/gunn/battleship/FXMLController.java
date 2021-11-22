@@ -27,10 +27,19 @@ import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.TilePane;
 
 public class FXMLController implements Initializable {
 
     //imports
+    @FXML
+    private TilePane TPN_WALL;
+    @FXML
+    private Label LBL_NAME;
+    
+    @FXML
+    private Button BTN_ENTER;
+    
     @FXML
     private Label LBL_GAMEBRAIN;
 
@@ -141,6 +150,7 @@ public class FXMLController implements Initializable {
     public static String Name;
     int score = 0;
     int endTime = 0;
+    int multiplier = 0;
     String leaderboardName[] = new String[5]; 
     int leaderboardScore[] = new int [5];
     String HPlayer1 = "Player 1";
@@ -148,11 +158,13 @@ public class FXMLController implements Initializable {
     String HPlayer3 = "Player 3";
     String HPlayer4 = "Player 4";        
     String HPlayer5 = "Player 5";
-    int HScore1 = 500;
-    int HScore2 = 400;
-    int HScore3 = 300;
-    int HScore4 = 200;
-    int HScore5 = 100;
+    String HPlayer6 = "Player 6";
+    int HScore1 = -100000;
+    int HScore2 = -100000;
+    int HScore3 = -100000;
+    int HScore4 = -100000;
+    int HScore5 = -100000;
+    int HScore6 = -100000;
             
             ;
     ImageView Store[];//array
@@ -194,6 +206,15 @@ public class FXMLController implements Initializable {
     }
     
      */
+    
+    
+    @FXML
+    void enterClick(MouseEvent event) 
+    {
+     BTN_START.setVisible(true);
+     BTN_ENTER.setVisible(false);
+    }
+    
     @FXML
     void exitClick(MouseEvent event) //exit button
     {
@@ -204,29 +225,86 @@ public class FXMLController implements Initializable {
     {
     endTime = timer;
             timeline.stop(); //stop timer code
+            TPN_WALL.setVisible(true);
             for (ImageView name : Store) {
                 name.setAccessibleText("Neg");
             }
-            score = (int) Math.floor(((double) ((hitTotal / (missTotal / 2)) * 1000) - (endTime * 5)));//score calc code
             
-            if( score > HScore1)
+            if(total == hitTotal)
             {
+              multiplier = 1000;  
+            }
+            if(missTotal == 11)
+            {
+              multiplier = 100;
+            }
+            
+            
+            score = (int) Math.floor(((double) ((multiplier + ((2 * ((hitTotal * 2) / (missTotal))) * 1000) - (endTime * 10)))));//score calc code
+            
+            if( score > HScore1) //Local high scores and bumping
+            {   
+              HScore6 = HScore5;
+              HScore5 = HScore4;
+              HScore4 = HScore3;
+              HScore3 = HScore2;
+              HScore2 = HScore1;
+              
+              HPlayer6 = HPlayer5;
+              HPlayer5 = HPlayer4;
+              HPlayer4 = HPlayer3;
+              HPlayer3 = HPlayer2;
+              HPlayer2 = HPlayer1;
+              
+              HPlayer1 = Name;
               HScore1 = score;
             }
             else if( score > HScore2)
             {
+              HScore6 = HScore5;
+              HScore5 = HScore4;
+              HScore4 = HScore3;
+              HScore3 = HScore2; 
+              
+              HPlayer6 = HPlayer5;
+              HPlayer5 = HPlayer4;
+              HPlayer4 = HPlayer3;
+              HPlayer3 = HPlayer2;
+              
+              HPlayer2 = Name;
               HScore2 = score;
             }
             else if( score > HScore3)
             {
+              HScore6 = HScore5;
+              HScore5 = HScore4;
+              HScore4 = HScore3; 
+              
+              HPlayer6 = HPlayer5;
+              HPlayer5 = HPlayer4;
+              HPlayer4 = HPlayer3;
+                
+              HPlayer3 = Name;
               HScore3 = score;
             }
             else if( score > HScore4)
-            {
+            { 
+              HScore6 = HScore5;
+              HScore5 = HScore4;
+              
+              HPlayer6 = HPlayer5;
+              HPlayer5 = HPlayer4;
+              
+              HPlayer4 = Name;
               HScore4 = score;
             }
             else if( score > HScore5)
             {
+             HScore6 = HScore5;
+              
+             HPlayer6 = HPlayer5;
+              
+              HPlayer5 = Name;
               HScore5 = score;
             }
             
@@ -279,8 +357,9 @@ public class FXMLController implements Initializable {
 
     @FXML
     void resetClick(ActionEvent event) { //reset buttons and numbers
-        BTN_START.setVisible(true);
+        BTN_ENTER.setVisible(true);
         TXT_NAME.setVisible(true);
+        LBL_NAME.setText("Name:");
         LBL_GAMEBRAIN.setText("");
         LBL_TIMER.setText("0000");
         LBL_GAMEBRAIN.setText("");
@@ -385,10 +464,11 @@ public class FXMLController implements Initializable {
             JFX_IMG_16.setAccessibleText("2L");
             total = total + 3;
         }
-
+        LBL_NAME.setText("Player: " + Name);
         TXT_NAME.setVisible(false); //to prevebnt double clicks and changes
         BTN_START.setVisible(false);
-
+        BTN_ENTER.setVisible(false);
+        TPN_WALL.setVisible(false);
         timeline.setCycleCount(Timeline.INDEFINITE);//starts timer
         timeline.play();
 
@@ -401,6 +481,8 @@ public class FXMLController implements Initializable {
             JFX_IMG_15, JFX_IMG_16, JFX_IMG_17, JFX_IMG_18, JFX_IMG_19, JFX_IMG_20, JFX_IMG_21,
             JFX_IMG_22, JFX_IMG_23, JFX_IMG_24, JFX_IMG_25};
         Store = picR;
+        BTN_START.setVisible(false);
+        TPN_WALL.setVisible(true);
     //readScores();
     //writeScore();    
         // TODO
