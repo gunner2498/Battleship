@@ -7,6 +7,11 @@ Date; 22/11/21
 Assignment#; 1
 Description; Creating a functioning single player game of battleship
  */
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
