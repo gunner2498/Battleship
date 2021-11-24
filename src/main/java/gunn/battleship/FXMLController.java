@@ -7,7 +7,8 @@ Date; 22/11/21
 Assignment#; 1
 Description; Creating a functioning single player game of battleship
  */
-import java.io.BufferedReader; 
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -26,12 +27,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 
 public class FXMLController implements Initializable {
 
     //imports
+    @FXML
+    private Label LBL_PLAYER_STAT;
     @FXML
     private TilePane TPN_WALL;
     @FXML
@@ -150,44 +155,32 @@ public class FXMLController implements Initializable {
     public static String Name;
     int score = 0;
     int endTime = 0;
-    int multiplier = 0;
+    int bonusPoint = 0;
     String leaderboardName[] = new String[5];
     int leaderboardScore[] = new int[5];
-    String HPlayer1 = "Player 1";
-    String HPlayer2 = "Player 2";
-    String HPlayer3 = "Player 3";
-    String HPlayer4 = "Player 4";
-    String HPlayer5 = "Player 5";
-    String HPlayer6 = "Player 6";
-    int HScore1 = -100000;
-    int HScore2 = -100000;
-    int HScore3 = -100000;
-    int HScore4 = -100000;
-    int HScore5 = -100000;
-    int HScore6 = -100000;
 
     ;
     ImageView Store[];//array
 
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ae -> counter())); //timers brain
-
-    void counter() {           //timer label counter
+    
+    //timer label counter
+    void counter() { //timer label counter
         timer++;
         LBL_TIMER.setText("" + timer);
     }
-    
-    
-    //File highscores
+
+    //File highscores and Names
     void readScores() {
         try {
 
             BufferedReader readFile = new BufferedReader(new FileReader("Netbeans_Name_File"));
             for (int i = 0; i < 5; i++) {
-                
+
                 leaderboardName[i] = readFile.readLine();
                 leaderboardScore[i] = Integer.parseInt(readFile.readLine());
-                
-            }  
+
+            }
             readFile.close();
         } catch (IOException e) {
         }
@@ -199,7 +192,7 @@ public class FXMLController implements Initializable {
             for (int i = 0; i < 5; i++) {
                 outFile.write(leaderboardName[i]);
                 outFile.newLine();
-                outFile.write(leaderboardScore[i]);
+                outFile.write("" + leaderboardScore[i]);
                 outFile.newLine();
             }
             outFile.close();
@@ -207,107 +200,96 @@ public class FXMLController implements Initializable {
         }
     }
 
-    @FXML
+    @FXML //Button to guide user to making a name
     void enterClick(MouseEvent event) {
         BTN_START.setVisible(true);
         BTN_ENTER.setVisible(false);
-        String leaderboardName[] = {HPlayer1, HPlayer2, HPlayer3, HPlayer4, HPlayer5};
-        int leaderboardScore[] = {HScore1, HScore2, HScore3, HScore4, HScore5};
     }
 
-    @FXML
+    @FXML //End button
     void exitClick(MouseEvent event) //exit button
     {
-        writeScore(); //wont work
         System.exit(0);
     }
 
+    //Game end protocol
     void wrapUp() {
         endTime = timer;
         timeline.stop(); //stop timer code
-        TPN_WALL.setVisible(true);
+        TPN_WALL.setVisible(true); //Panel to block input to grid
+        LBL_PLAYER_STAT.setText("User " + Name + ", Final score: " + score); //User score
         for (ImageView name : Store) {
             name.setAccessibleText("Neg");
         }
-
+        //Win/loss bonuses
         if (total == hitTotal) {
-            multiplier = 1000;
+            bonusPoint = 1000;
         }
         if (missTotal == 11) {
-            multiplier = 100;
+            bonusPoint = 100;
         }
 
-        score = (int) Math.floor(((double) ((multiplier + ((2 * ((hitTotal * 2) / (missTotal))) * 1000) - (endTime * 10)))));//score calc code
+        score = (int) Math.floor(((double) ((bonusPoint + ((2 * ((hitTotal * 2) / (missTotal))) * 1000) - (endTime * 10)))));//score calc code
 
-        if (score > HScore1) //Local high scores and bumping
+        LBL_PLAYER_STAT.setText("User: " + Name + ", Final score: " + score);
+        
+        if (score > leaderboardScore[0]) // high scores and bumping
         {
-            HScore6 = HScore5;
-            HScore5 = HScore4;
-            HScore4 = HScore3;
-            HScore3 = HScore2;
-            HScore2 = HScore1;
+            leaderboardScore[4] = leaderboardScore[3];
+            leaderboardName[4] = leaderboardName[3];
+            leaderboardScore[3] = leaderboardScore[2];
+            leaderboardName[3] = leaderboardName[2];
+            leaderboardScore[2] = leaderboardScore[1];
+            leaderboardName[2] = leaderboardName[1];
+            leaderboardScore[1] = leaderboardScore[0];
+            leaderboardName[1] = leaderboardName[0];
+            leaderboardScore[0] = score;
+            leaderboardName[0] = Name;
+        } else if (score > leaderboardScore[1]) 
+        {
+            leaderboardScore[4] = leaderboardScore[3];
+            leaderboardName[4] = leaderboardName[3];
+            leaderboardScore[3] = leaderboardScore[2];
+            leaderboardName[3] = leaderboardName[2];
+            leaderboardScore[2] = leaderboardScore[1];
+            leaderboardName[2] = leaderboardName[1];
+            leaderboardScore[1] = score;
+            leaderboardName[1] = Name;
 
-            HPlayer6 = HPlayer5;
-            HPlayer5 = HPlayer4;
-            HPlayer4 = HPlayer3;
-            HPlayer3 = HPlayer2;
-            HPlayer2 = HPlayer1;
+        } else if (score > leaderboardScore[2]) 
+        {
+            leaderboardScore[4] = leaderboardScore[3];
+            leaderboardName[4] = leaderboardName[3];
+            leaderboardScore[3] = leaderboardScore[2];
+            leaderboardName[3] = leaderboardName[2];
+            leaderboardScore[2] = score;
+            leaderboardName[2] = Name;
 
-            HPlayer1 = Name;
-            HScore1 = score;
-        } else if (score > HScore2) {
-            HScore6 = HScore5;
-            HScore5 = HScore4;
-            HScore4 = HScore3;
-            HScore3 = HScore2;
+        } else if (score > leaderboardScore[3]) {
+            leaderboardScore[4] = leaderboardScore[3];
+            leaderboardName[4] = leaderboardName[3];
+            leaderboardScore[3] = score;
+            leaderboardName[3] = Name;
 
-            HPlayer6 = HPlayer5;
-            HPlayer5 = HPlayer4;
-            HPlayer4 = HPlayer3;
-            HPlayer3 = HPlayer2;
-
-            HPlayer2 = Name;
-            HScore2 = score;
-        } else if (score > HScore3) {
-            HScore6 = HScore5;
-            HScore5 = HScore4;
-            HScore4 = HScore3;
-
-            HPlayer6 = HPlayer5;
-            HPlayer5 = HPlayer4;
-            HPlayer4 = HPlayer3;
-
-            HPlayer3 = Name;
-            HScore3 = score;
-        } else if (score > HScore4) {
-            HScore6 = HScore5;
-            HScore5 = HScore4;
-
-            HPlayer6 = HPlayer5;
-            HPlayer5 = HPlayer4;
-
-            HPlayer4 = Name;
-            HScore4 = score;
-        } else if (score > HScore5) {
-            HScore6 = HScore5;
-
-            HPlayer6 = HPlayer5;
-
-            HPlayer5 = Name;
-            HScore5 = score;
+        } else if (score > leaderboardScore[4]) {
+            leaderboardScore[4] = score;
+            leaderboardName[4] = Name;
         }
 
-        LBL_GAMEBRAIN.setText("User " + Name + ", Final score: " + score + "\n" + "\n" + "\t" + "Highscores"
-                + "\n" + "1,  " + HPlayer1 + ": " + HScore1
-                + "\n" + "2,  " + HPlayer2 + ": " + HScore2
-                + "\n" + "3,  " + HPlayer3 + ": " + HScore3
-                + "\n" + "4,  " + HPlayer4 + ": " + HScore4
-                + "\n" + "5,  " + HPlayer5 + ": " + HScore5
-        );
+        update();
 
-       writeScore();
+        writeScore();
     }
-
+    //Leaderboard output
+    void update() {
+        String outputString = "Highscores\n\n";
+        for (int i = 0; i < 5; i++) {
+            outputString = outputString + ((i*1)+1) + "# "  + leaderboardName[i] + "; " + leaderboardScore[i] + "\n";
+        }
+        LBL_GAMEBRAIN.setText(outputString);
+    }
+    
+    //Game logic
     @FXML
     void imgClick(MouseEvent event) //variables for images
     {
@@ -330,30 +312,40 @@ public class FXMLController implements Initializable {
             LBL_MISS.setText("" + missTotal);
             img.setAccessibleText("Neg");
         }
-
+        //Endgame conditions
+        
         if (total == hitTotal) //endgame code for calculating win scores
         {
+            Alert alert = new Alert(AlertType.INFORMATION); 
+            alert.setTitle("Battleship Results");
+            alert.setHeaderText(null); 
+            alert.setContentText("WINNER!");
+            alert.showAndWait();
             wrapUp();
         }
 
-        if (missTotal == 11)//endgame code for calculating win scores
+        if (missTotal == 12)//endgame code for calculating win scores
         {
+            Alert alert = new Alert(AlertType.INFORMATION); 
+            alert.setTitle("Battleship Results");
+            alert.setHeaderText(null); 
+            alert.setContentText("LOSER:(");
+            alert.showAndWait();
             wrapUp();
         }
 
     }
 
-    @FXML
+    @FXML //Reset button
     void resetClick(ActionEvent event) { //reset buttons and numbers
         BTN_ENTER.setVisible(true);
         TXT_NAME.setVisible(true);
         LBL_NAME.setText("Name:");
-        LBL_GAMEBRAIN.setText("");
         LBL_TIMER.setText("0000");
-        LBL_GAMEBRAIN.setText("");
         TXT_NAME.setText("");
         LBL_MISS.setText("");
         LBL_HIT.setText("");
+        LBL_PLAYER_STAT.setText("");
         hitTotal = 0;
         missTotal = 0;
         score = 0;
@@ -470,14 +462,11 @@ public class FXMLController implements Initializable {
             JFX_IMG_22, JFX_IMG_23, JFX_IMG_24, JFX_IMG_25};
         Store = picR;
 
-        String leaderboardName[] = {HPlayer1, HPlayer2, HPlayer3, HPlayer4, HPlayer5};
-        int leaderboardScore[] = {HScore1, HScore2, HScore3, HScore4, HScore5};
-
         BTN_START.setVisible(false);
         TPN_WALL.setVisible(true);
 
         readScores();
-        
+        update();
         // TODO
 
     }//End of Main
