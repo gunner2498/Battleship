@@ -7,7 +7,6 @@ Date; 22/11/21
 Assignment#; 1
 Description; Creating a functioning single player game of battleship
  */
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -52,9 +51,6 @@ public class FXMLController implements Initializable {
     private TextField TXT_NAME;
 
     @FXML
-    private Button BTN_RESET;
-
-    @FXML
     private Label LBL_HIT;
 
     @FXML
@@ -65,9 +61,6 @@ public class FXMLController implements Initializable {
 
     @FXML
     private Button BTN_START;
-
-    @FXML
-    private Button BTN_EXIT;
 
     @FXML
     private ImageView JFX_IMG_01;
@@ -163,7 +156,7 @@ public class FXMLController implements Initializable {
     ImageView Store[];//array
 
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ae -> counter())); //timers brain
-    
+
     //timer label counter
     void counter() { //timer label counter
         timer++;
@@ -232,7 +225,7 @@ public class FXMLController implements Initializable {
         score = (int) Math.floor(((double) ((bonusPoint + ((2 * ((hitTotal * 2) / (missTotal))) * 1000) - (endTime * 10)))));//score calc code
 
         LBL_PLAYER_STAT.setText("User: " + Name + ", Final score: " + score);
-        
+
         if (score > leaderboardScore[0]) // high scores and bumping
         {
             leaderboardScore[4] = leaderboardScore[3];
@@ -245,8 +238,7 @@ public class FXMLController implements Initializable {
             leaderboardName[1] = leaderboardName[0];
             leaderboardScore[0] = score;
             leaderboardName[0] = Name;
-        } else if (score > leaderboardScore[1]) 
-        {
+        } else if (score > leaderboardScore[1]) {
             leaderboardScore[4] = leaderboardScore[3];
             leaderboardName[4] = leaderboardName[3];
             leaderboardScore[3] = leaderboardScore[2];
@@ -256,8 +248,7 @@ public class FXMLController implements Initializable {
             leaderboardScore[1] = score;
             leaderboardName[1] = Name;
 
-        } else if (score > leaderboardScore[2]) 
-        {
+        } else if (score > leaderboardScore[2]) {
             leaderboardScore[4] = leaderboardScore[3];
             leaderboardName[4] = leaderboardName[3];
             leaderboardScore[3] = leaderboardScore[2];
@@ -280,22 +271,22 @@ public class FXMLController implements Initializable {
 
         writeScore();
     }
+
     //Leaderboard output
     void update() {
         String outputString = "Highscores\n\n";
         for (int i = 0; i < 5; i++) {
-            outputString = outputString + ((i*1)+1) + "# "  + leaderboardName[i] + "; " + leaderboardScore[i] + "\n";
+            outputString = outputString + ((i * 1) + 1) + "# " + leaderboardName[i] + "; " + leaderboardScore[i] + "\n";
         }
         LBL_GAMEBRAIN.setText(outputString);
     }
-    
+
     //Game logic
     @FXML
     void imgClick(MouseEvent event) //variables for images
     {
         ImageView img = (ImageView) event.getSource();
 
-        Image clouds = new Image(getClass().getResource("/Clouds.jpeg").toString());
         Image explosion = new Image(getClass().getResource("/Explosion.jpeg").toString());
         Image water = new Image(getClass().getResource("/Water.jpeg").toString());
         if (img.getAccessibleText().equals("2L"))// image changing code and prep
@@ -313,12 +304,12 @@ public class FXMLController implements Initializable {
             img.setAccessibleText("Neg");
         }
         //Endgame conditions
-        
+
         if (total == hitTotal) //endgame code for calculating win scores
         {
-            Alert alert = new Alert(AlertType.INFORMATION); 
+            Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Battleship Results");
-            alert.setHeaderText(null); 
+            alert.setHeaderText(null);
             alert.setContentText("WINNER!");
             alert.showAndWait();
             wrapUp();
@@ -326,9 +317,9 @@ public class FXMLController implements Initializable {
 
         if (missTotal == 12)//endgame code for calculating win scores
         {
-            Alert alert = new Alert(AlertType.INFORMATION); 
+            Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Battleship Results");
-            alert.setHeaderText(null); 
+            alert.setHeaderText(null);
             alert.setContentText("LOSER:(");
             alert.showAndWait();
             wrapUp();
