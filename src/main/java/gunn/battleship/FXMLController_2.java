@@ -14,19 +14,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 
+public class FXMLController_2 implements Initializable {
 
- public class FXMLController_2 implements Initializable {
+    @FXML //swap to main game page
+    private void continue_Click(ActionEvent event) throws IOException {
+        MainApp.setRoot("primary");
 
-       @FXML //swap to main game page
-       private void continue_Click(ActionEvent event) throws IOException {
-       MainApp.setRoot("primary");
-    
     }
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
 
     }//End of Main
 }//End of Class
