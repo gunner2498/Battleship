@@ -7,11 +7,6 @@ Date; 22/11/21
 Assignment#; 1
 Description; Creating a functioning single player game of battleship
  */
-import java.io.IOException;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -312,22 +307,24 @@ public class FXMLController implements Initializable {
 
         if (total == hitTotal) //endgame code for calculating win scores
         {
+            wrapUp();
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Battleship Results");
             alert.setHeaderText(null);
             alert.setContentText("WINNER!");
             alert.showAndWait();
-            wrapUp();
+            
         }
 
         if (missTotal == 12)//endgame code for calculating win scores
         {
+            wrapUp();
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Battleship Results");
             alert.setHeaderText(null);
             alert.setContentText("LOSER:(");
             alert.showAndWait();
-            wrapUp();
+            
         }
 
     }

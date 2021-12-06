@@ -7,7 +7,7 @@
     <list default="true" id="6d3193ef-e2b5-4637-bf0f-bea8b0b21a2f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Netbeans_Name_File" beforeDir="false" afterPath="$PROJECT_DIR$/Netbeans_Name_File" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gunn/battleship/FXMLController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gunn/battleship/FXMLController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Secondary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
